@@ -1,0 +1,21 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code (using v3)
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Deploy to Vercel using Vercel CLI
+      - name: Deploy to Vercel
+        run: npx vercel --prod
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }} # Securely uses the token from GitHub Secrets
