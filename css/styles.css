@@ -1,141 +1,383 @@
-/* Full page background with animated, smooth gradient */
+/* Full page background with gradient */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "Nunito Sans", sans-serif;
-    color: white;
-    background: linear-gradient(135deg, #000000, #1a1a2e); /* Dark gradient with a subtle hint of violet */
-    height: 100vh; /* Ensure it covers the entire viewport */
-    display: flex;
-    justify-content: center;
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito Sans", sans-serif;
+  color: white;
+  background: linear-gradient(135deg, #000000, #1a1a2e);
+  min-height: 100vh; /* Changed from height to min-height for better responsiveness */
+  display: flex;
+  justify-content: center;
 }
 
-
 #main-container {
-    padding-top: 0;
-    position: relative;
-    z-index: 2; /* Ensure content is above the noise overlay */
+  padding-top: 0;
+  position: relative;
+  z-index: 2;
 }
 
 /* Title Styling */
 .title {
-    font-size: 2.5rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1.5rem;
+  font-size: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
 }
 
-/* Applying the Sixtyfour Convergence font */
 .sixtyfour-convergence-title {
-    font-family: "Sixtyfour Convergence", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings:
-        "BLED" 0,
-        "SCAN" 0,
-        "XELA" 0,
-        "YELA" 0;
+  font-family: "Sixtyfour Convergence", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "BLED" 0, "SCAN" 0, "XELA" 0, "YELA" 0;
 }
 
-/* Applying the Caveat font to the subtitle */
 .caveat-subtitle {
-    font-family: "Caveat", cursive;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 1.5rem;
-    margin-top: 5px;
-    color: #ccc;
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.5rem;
+  margin-top: 5px;
+  color: #ccc;
 }
 
 /* GIF Styling */
 .reel-gif {
-    width: 60px;
-    height: auto;
-    margin-left: 10px;
+  width: 60px;
+  height: auto;
+  margin-left: 10px;
 }
 
 header {
-    margin-top: 0;
+  margin-top: 0;
+}
+/* Filter Container */
+.filter-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.filter-group {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.filter-group label {
+  margin-right: 5px;
+}
+
+.filter-group select {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+}
+
+#filterButton,
+#resetButton {
+  padding: 5px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #1a1a2e;
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#filterButton:hover,
+#resetButton:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
+
+/* Grid View Styles */
+.card-slider.grid-view {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  /* Removed overflow: auto; to allow page scrolling */
+}
+
+.card-slider.grid-view .card {
+  position: relative; /* Ensure cards are positioned correctly */
+  width: 200px;
+  height: 300px;
+  margin: 10px;
+  transform: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-slider.grid-view .card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px; /* Added for a modern look */
+}
+
+.card-slider.grid-view .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide rotating card styles in grid view */
+.card-slider.grid-view .card.active,
+.card-slider.grid-view .card.left,
+.card-slider.grid-view .card.right,
+.card-slider.grid-view .card.left2,
+.card-slider.grid-view .card.right2,
+.card-slider.grid-view .card.left3,
+.card-slider.grid-view .card.right3,
+.card-slider.grid-view .card.hidden {
+  transform: none;
+  opacity: 1;
 }
 
 /* Card Slider Container */
 .card-slider-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    margin-top: 2rem;
+  position: relative;
+  width: 100%;
+  /* Remove overflow: hidden; to allow content to expand */
+  margin-top: 2rem;
+  perspective: 1000px; /* Add perspective for 3D effect */
+}
+
+.card-slider-container.rotating-view {
+  overflow: hidden; /* Only hide overflow in rotating view */
 }
 
 /* Card Slider */
 .card-slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    will-change: transform;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform-style: preserve-3d; /* Enable 3D transforms for children */
+  width: 100%;
+  /* Remove fixed height to allow content to expand */
+}
+
+/* Rotating View Specific Styles */
+.card-slider.rotating-view {
+  height: 400px; /* Set height only in rotating view */
 }
 
 /* Individual Cards */
 .card {
-    min-width: 200px;
-    max-width: 200px;
-    margin: 0 10px;
-    transition: transform 0.5s;
-    transform-origin: center;
-    position: relative;
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  transition: transform 1s ease-in-out, box-shadow 0.3s ease;
+  transform-origin: center;
+  backface-visibility: hidden;
+  cursor: pointer;
 }
 
-/* Pop-out Effect for Center Card */
+/* Hover Effect */
+.card:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Active Card */
 .card.active {
-    transform: scale(1.2);
-    z-index: 1;
+  transform: translateX(0) scale(1) rotateY(0deg);
+  z-index: 5;
+  opacity: 1;
 }
 
-/* Card Image */
-.card img {
-    width: 100%; /* Ensures the image fills the card */
-    height: 100%; /* Ensure images fill the card height */
-    object-fit: cover; /* Ensures the image is cropped to fit, maintaining aspect ratio */
-    border-radius: 10px;
+/* Cards to the Left */
+.card.left {
+  transform: translateX(-150px) scale(0.9) rotateY(15deg);
+  z-index: 4;
+  opacity: 0.9;
 }
 
-
-/* Navigation Buttons */
-.slider-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(26, 26, 46, 0.7);
-    border: none;
-    color: #fff;
-    font-size: 2rem;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 2;
-    border-radius: 50%;
+.card.left2 {
+  transform: translateX(-300px) scale(0.8) rotateY(30deg);
+  z-index: 3;
+  opacity: 0.8;
 }
 
-.left-button {
-    left: 10px;
+.card.left3 {
+  transform: translateX(-450px) scale(0.7) rotateY(45deg);
+  z-index: 2;
+  opacity: 0.7;
 }
 
-.right-button {
-    right: 10px;
+/* Cards to the Right */
+.card.right {
+  transform: translateX(150px) scale(0.9) rotateY(-15deg);
+  z-index: 4;
+  opacity: 0.9;
 }
 
-.slider-button:hover {
-    background-color: rgba(26, 26, 46, 0.9);
+.card.right2 {
+  transform: translateX(300px) scale(0.8) rotateY(-30deg);
+  z-index: 3;
+  opacity: 0.8;
 }
 
-/* Responsive Adjustments */
+.card.right3 {
+  transform: translateX(450px) scale(0.7) rotateY(-45deg);
+  z-index: 2;
+  opacity: 0.7;
+}
+
+/* Hide Cards Beyond a Certain Point */
+.card.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.5);
+  z-index: 1;
+}
+
+/* Adjusted Responsive Styles */
 @media (max-width: 768px) {
-    .card {
-        min-width: 150px;
-        max-width: 150px;
-    }
+  .card {
+    width: 150px;
+    height: 225px;
+  }
 
-    .card.active {
-        transform: scale(1.1);
-    }
+  .card.left {
+    transform: translateX(-100px) scale(0.8) rotateY(15deg);
+  }
+
+  .card.left2 {
+    transform: translateX(-200px) scale(0.7) rotateY(30deg);
+  }
+
+  .card.left3 {
+    transform: translateX(-300px) scale(0.6) rotateY(45deg);
+  }
+
+  .card.right {
+    transform: translateX(100px) scale(0.8) rotateY(-15deg);
+  }
+
+  .card.right2 {
+    transform: translateX(200px) scale(0.7) rotateY(-30deg);
+  }
+
+  .card.right3 {
+    transform: translateX(300px) scale(0.6) rotateY(-45deg);
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none; /* Hide modal initially */
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #1a1a2e;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 800px;
+  /* Remove max-height and overflow to allow content to expand */
+  /* max-height: 90vh; */
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px; /* Adjusted from 15px to 10px */
+  right: 15px; /* Adjusted from 20px to 15px */
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 1; /* Ensure the close button is above other elements */
+}
+
+.close-button:hover {
+  color: #ccc;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-grow: 1; /* Allow modal-body to grow and fill available space */
+  /* Removed height: 100%; */
+  overflow: hidden;
+}
+
+.modal-left,
+.modal-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* Removed height: 100%; */
+}
+
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  flex-grow: 1; /* Allow slideshow-container to grow and fill modal-left */
+  /* Removed height: 100%; */
+  display: flex;
+}
+
+.slideshow-container img {
+  width: 100%;
+  height: auto; /* Let the image height adjust automatically */
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.modal-right {
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.movie-details {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.movie-details li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.modal-right h2 {
+  margin-top: 0;
+}
+
+/* Adjust modal for smaller screens */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+  }
+
+  .modal-body {
+    flex-direction: column;
+  }
+
+  .modal-left,
+  .modal-right {
+    height: auto; /* Allow flexible height for mobile */
+  }
+
+  .slideshow-container {
+    height: auto; /* Adjust height on smaller screens */
+  }
 }
