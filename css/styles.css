@@ -1,0 +1,141 @@
+/* Full page background with animated, smooth gradient */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Nunito Sans", sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #000000, #1a1a2e); /* Dark gradient with a subtle hint of violet */
+    height: 100vh; /* Ensure it covers the entire viewport */
+    display: flex;
+    justify-content: center;
+}
+
+
+#main-container {
+    padding-top: 0;
+    position: relative;
+    z-index: 2; /* Ensure content is above the noise overlay */
+}
+
+/* Title Styling */
+.title {
+    font-size: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* Applying the Sixtyfour Convergence font */
+.sixtyfour-convergence-title {
+    font-family: "Sixtyfour Convergence", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "BLED" 0,
+        "SCAN" 0,
+        "XELA" 0,
+        "YELA" 0;
+}
+
+/* Applying the Caveat font to the subtitle */
+.caveat-subtitle {
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.5rem;
+    margin-top: 5px;
+    color: #ccc;
+}
+
+/* GIF Styling */
+.reel-gif {
+    width: 60px;
+    height: auto;
+    margin-left: 10px;
+}
+
+header {
+    margin-top: 0;
+}
+
+/* Card Slider Container */
+.card-slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+/* Card Slider */
+.card-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+}
+
+/* Individual Cards */
+.card {
+    min-width: 200px;
+    max-width: 200px;
+    margin: 0 10px;
+    transition: transform 0.5s;
+    transform-origin: center;
+    position: relative;
+}
+
+/* Pop-out Effect for Center Card */
+.card.active {
+    transform: scale(1.2);
+    z-index: 1;
+}
+
+/* Card Image */
+.card img {
+    width: 100%; /* Ensures the image fills the card */
+    height: 100%; /* Ensure images fill the card height */
+    object-fit: cover; /* Ensures the image is cropped to fit, maintaining aspect ratio */
+    border-radius: 10px;
+}
+
+
+/* Navigation Buttons */
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(26, 26, 46, 0.7);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%;
+}
+
+.left-button {
+    left: 10px;
+}
+
+.right-button {
+    right: 10px;
+}
+
+.slider-button:hover {
+    background-color: rgba(26, 26, 46, 0.9);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card {
+        min-width: 150px;
+        max-width: 150px;
+    }
+
+    .card.active {
+        transform: scale(1.1);
+    }
+}
