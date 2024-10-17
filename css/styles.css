@@ -5,7 +5,7 @@ body {
   font-family: "Nunito Sans", sans-serif;
   color: white;
   background: linear-gradient(135deg, #000000, #1a1a2e);
-  min-height: 100vh; /* Changed from height to min-height for better responsiveness */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
 }
@@ -100,11 +100,10 @@ header {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
-  /* Removed overflow: auto; to allow page scrolling */
 }
 
 .card-slider.grid-view .card {
-  position: relative; /* Ensure cards are positioned correctly */
+  position: relative; 
   width: 200px;
   height: 300px;
   margin: 10px;
@@ -287,9 +286,6 @@ header {
   border-radius: 10px;
   width: 80%;
   max-width: 800px;
-  /* Remove max-height and overflow to allow content to expand */
-  /* max-height: 90vh; */
-  /* overflow: hidden; */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -298,8 +294,8 @@ header {
 
 .close-button {
   position: absolute;
-  top: 10px; /* Adjusted from 15px to 10px */
-  right: 15px; /* Adjusted from 20px to 15px */
+  top: 10px; 
+  right: 15px;
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
