@@ -6,10 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MovieVerse: Explore Movies</title>
 
-  <!-- Bootstrap CSS (using CDN) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/styles.css">
 
   <!-- Google Fonts -->
@@ -38,8 +36,7 @@
           <label for="yearFilter">Year:</label>
           <select id="yearFilter">
             <option value="">All Years</option>
-            <!-- Years from 2006 to 2015 -->
-            <option value="2006">2006</option>
+           <option value="2006">2006</option>
             <option value="2007">2007</option>
             <option value="2008">2008</option>
             <option value="2009">2009</option>
@@ -85,6 +82,7 @@
     <div class="card-slider-container" id="cardContainer">
       <div class="card-slider" id="cardSlider">
         <!-- Movie cards will be injected here -->
+        <!-- Also here "No Results Found" message will be inserted dynamically -->
       </div>
     </div>
     <!-- Modal for Movie Details -->

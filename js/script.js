@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const modalContent = document.querySelector('.modal-content');
 
     // Auto-switching variables
-    let autoSwitchInterval = 4000; // Switch every 4 seconds
+    let autoSwitchInterval = 3000;
     let autoSwitchTimer;
     let isModalOpen = false; // Flag to track modal state
-    let currentView = 'rotating'; // 'rotating' or 'grid'
+    let currentView = 'rotating';
 
     // Filter elements
     const filterForm = document.getElementById('filterForm');
@@ -148,26 +148,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Automatic switching logic
     function startAutoSwitch() {
-        if (currentView !== 'rotating') return;
+        if (currentView !== 'rotating' || isModalOpen) return;
+
+        // Ensure the autoSwitchTimer is cleared before starting a new one
+        if (autoSwitchTimer) {
+            clearInterval(autoSwitchTimer);
+        }
+
         autoSwitchTimer = setInterval(() => {
+            // Increment the currentIndex with wrap-around logic
             currentIndex = (currentIndex + 1) % displayedMovies.length;
+
+            // Update the active card with a smooth transition
             updateActiveCard();
-        }, autoSwitchInterval);
+
+            // Here we use Debounce to ensure transitions are smooth and cards don't skip
+            pauseAutoSwitch();
+            setTimeout(() => {
+                if (!isModalOpen) { 
+                    resumeAutoSwitch();
+                }
+            }, autoSwitchInterval); // Debounce based on autoSwitchInterval
+
+        }, autoSwitchInterval); // Define the switch interval (e.g., 4000 ms)
     }
 
     // Pause and resume functions
     function pauseAutoSwitch() {
         if (autoSwitchTimer) {
-            clearInterval(autoSwitchTimer);
+            clearInterval(autoSwitchTimer); // Clear the interval to stop the switching
             autoSwitchTimer = null;
         }
     }
 
     function resumeAutoSwitch() {
+        // Resume auto-switching only if it is paused and the modal is not open
         if (!autoSwitchTimer && !isModalOpen && currentView === 'rotating') {
             startAutoSwitch();
         }
     }
+
 
     // Filtering logic
     filterForm.addEventListener('submit', (event) => {
@@ -199,23 +219,27 @@ document.addEventListener('DOMContentLoaded', function () {
             return match;
         });
 
-        // Switch to grid view
-        currentView = 'grid';
+        if (displayedMovies.length === 0) {
+            // If no movies are found, show "No Results Found" message
+            cardSlider.innerHTML = '<p class="no-results">No results found. Please try different filters.</p>';
+        } else {
+            // If movies are found, switch to grid view and display the cards
+            currentView = 'grid';
 
-        // Clear auto-switching if active
-        pauseAutoSwitch();
+            // Clear auto-switching if active
+            pauseAutoSwitch();
 
-        // Update cardSlider class
-        cardSlider.classList.add('grid-view');
+            cardSlider.classList.add('grid-view');
 
-        // Reset currentIndex
-        currentIndex = 0;
+            currentIndex = 0;
 
-        // Render filtered movies
-        createCards(displayedMovies);
+            createCards(displayedMovies);
 
-        // Scroll to the results
-        cardContainer.scrollIntoView({ behavior: 'smooth' });
+            // Scroll to the results
+            cardContainer.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 
     // Reset button logic
@@ -325,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // Prevent clicks inside modal-content from closing the modal
-        modalContent.onclick = (event) => {
+        modalContent.onclick = (event) => { //
             event.stopPropagation();
         };
     }

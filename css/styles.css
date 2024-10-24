@@ -116,7 +116,7 @@ header {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px; /* Added for a modern look */
+  border-radius: 10px;
 }
 
 .card-slider.grid-view .card:hover {
@@ -141,7 +141,6 @@ header {
 .card-slider-container {
   position: relative;
   width: 100%;
-  /* Remove overflow: hidden; to allow content to expand */
   margin-top: 2rem;
   perspective: 1000px; /* Add perspective for 3D effect */
 }
@@ -150,20 +149,27 @@ header {
   overflow: hidden; /* Only hide overflow in rotating view */
 }
 
+/* No Results Found Styling */
+.no-results {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #ccc;
+  margin-top: 20px;
+}
+
 /* Card Slider */
 .card-slider {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  transform-style: preserve-3d; /* Enable 3D transforms for children */
+  transform-style: preserve-3d;
   width: 100%;
-  /* Remove fixed height to allow content to expand */
 }
 
 /* Rotating View Specific Styles */
 .card-slider.rotating-view {
-  height: 400px; /* Set height only in rotating view */
+  height: 400px;
 }
 
 /* Individual Cards */
@@ -275,7 +281,7 @@ header {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.8);
-  display: none; /* Hide modal initially */
+  display: none;
   z-index: 10;
   align-items: center;
   justify-content: center;
@@ -300,7 +306,7 @@ header {
   color: #fff;
   cursor: pointer;
   transition: color 0.3s ease;
-  z-index: 1; /* Ensure the close button is above other elements */
+  z-index: 1; 
 }
 
 .close-button:hover {
@@ -312,7 +318,6 @@ header {
   flex-direction: row;
   gap: 20px;
   flex-grow: 1; /* Allow modal-body to grow and fill available space */
-  /* Removed height: 100%; */
   overflow: hidden;
 }
 
@@ -321,26 +326,24 @@ header {
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* Removed height: 100%; */
 }
 
 .slideshow-container {
   position: relative;
   width: 100%;
-  flex-grow: 1; /* Allow slideshow-container to grow and fill modal-left */
-  /* Removed height: 100%; */
+  flex-grow: 1;
   display: flex;
 }
 
 .slideshow-container img {
   width: 100%;
-  height: auto; /* Let the image height adjust automatically */
+  height: auto;
   object-fit: cover;
   border-radius: 10px;
 }
 
 .modal-right {
-  overflow-y: auto; /* Allow scrolling if content overflows */
+  overflow-y: auto; 
 }
 
 .movie-details {
@@ -370,10 +373,10 @@ header {
 
   .modal-left,
   .modal-right {
-    height: auto; /* Allow flexible height for mobile */
+    height: auto; 
   }
 
   .slideshow-container {
-    height: auto; /* Adjust height on smaller screens */
+    height: auto; 
   }
 }
