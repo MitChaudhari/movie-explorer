@@ -241,38 +241,6 @@ header {
   z-index: 1;
 }
 
-/* Adjusted Responsive Styles */
-@media (max-width: 768px) {
-  .card {
-    width: 150px;
-    height: 225px;
-  }
-
-  .card.left {
-    transform: translateX(-100px) scale(0.8) rotateY(15deg);
-  }
-
-  .card.left2 {
-    transform: translateX(-200px) scale(0.7) rotateY(30deg);
-  }
-
-  .card.left3 {
-    transform: translateX(-300px) scale(0.6) rotateY(45deg);
-  }
-
-  .card.right {
-    transform: translateX(100px) scale(0.8) rotateY(-15deg);
-  }
-
-  .card.right2 {
-    transform: translateX(200px) scale(0.7) rotateY(-30deg);
-  }
-
-  .card.right3 {
-    transform: translateX(300px) scale(0.6) rotateY(-45deg);
-  }
-}
-
 /* Modal Styles */
 .modal-overlay {
   position: fixed;
@@ -359,24 +327,4 @@ header {
 
 .modal-right h2 {
   margin-top: 0;
-}
-
-/* Adjust modal for smaller screens */
-@media (max-width: 768px) {
-  .modal-content {
-    width: 90%;
-  }
-
-  .modal-body {
-    flex-direction: column;
-  }
-
-  .modal-left,
-  .modal-right {
-    height: auto; 
-  }
-
-  .slideshow-container {
-    height: auto; 
-  }
 }
